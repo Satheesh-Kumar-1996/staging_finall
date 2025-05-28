@@ -29,67 +29,39 @@ def driver():
     driver.quit()
 
 
-def add_boe(driver):
-    safe_click(driver, "//label[@for='checkbox']")
+def test_boe(driver, file_path="/home/sathish/Satheesh/satz/2025/stagingsample/samplePDFFile.pdf"):
+    #safe_click(driver, "//label[@for='checkbox']")
     safe_click(driver, "(//a[normalize-space()='Documents'])[1]")
+# click BOE
     safe_click(driver, "(//h6[normalize-space()='BOE'])[1]")
-
-
-def add_new_boe(driver, file_path="/home/sathish/Satheesh/satz/2025/stagingsample/samplePDFFile.pdf"):
+#Add new
     safe_click(driver, "(//button[normalize-space()='ADD NEW'])[1]")
-    # Select the pi/po number
+# Select the pi/po number
     safe_click(driver, "(//input[@type='checkbox'])[2]")
-
+#
     safe_click(driver, "(//div[@class='dz-wrapper dropzone dz-multiple dz-clickable'])[1]")
     time.sleep(2)
     file_input_locator = (By.CSS_SELECTOR, "input[type='file']")
     upload_file_linux(driver, file_input_locator, file_path)
-
-def fill_boe_form(driver):
-    safe_click(driver, "(//input[@type='date'])[3]")
-    time.sleep(1)
-    # Enter the date
+#BOE date
     safe_send_keys(driver, (By.XPATH, "(//input[@type='date'])[3]"), "10/04/2025")
-    actions = ActionChains(driver)
-    actions.send_keys(Keys.TAB).perform()
-    actions.send_keys("2025").perform()
-    time.sleep(1)
-    # click & enter the BOE no
-    #safe_click(driver, "(//input[@type='text'])[3]")
-    safe_send_keys(driver, (By.XPATH, "((//input[@type='text'])[3]"), "BOE100")
-    # Enter the BOE Amount
-    safe_click(driver, "(//input[@type='textbox'])[1]")
-    safe_send_keys(driver, (By.XPATH, "(//input[@type='textbox'])[1]"), "5000")
-    # CLick and enter the port code
-    safe_click(driver, "(//input[@type='text'])[4]")
-    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[4]"), "port")
-    # CLick and enter the AWB no
-    safe_click(driver, "(//input[@type='text'])[5]")
-    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[5]"), "SWA8474")
-    # Click and enter the origin
-    safe_click(driver, "(//input[@type='text'])[6]")
+#BOE No
+    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[3]"), "ACC")
+#BOE Amount
+    safe_send_keys(driver, (By.XPATH, "(//input[@class='form-control ng-pristine ng-valid ng-touched'])[1]"), "20000")
+#Port code
+    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[4]"), "WE123")
+#AWB NO
+    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[5]"), "qwe1098")
+#Orgin
     safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[6]"), "Chennai")
-    # Click and enter ethe portof loading
-    safe_click(driver, "(//input[@type='text'])[7]")
-    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[7]"), "Delhi")
-    # click and enter Adcode
-    safe_click(driver, "(//input[@type='text'])[8]")
-    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[8]"), "AD8544")
-    # Click and enter the freight value
-    safe_click(driver, "(//input[@type='textbox'])[2]")
-    safe_send_keys(driver, (By.XPATH, "(//input[@type='textbox'])[2]"), "500")
-    # click and enter the miscellenous amount
-    safe_click(driver, "(//input[@type='text'])[9]")
-    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[9]"), "2000")
-    # CLick the TYpe dropdown
-    safe_click(driver, "(//span[@class='ng-arrow-wrapper'])[1]")
-    # Select the Type
-    safe_click(driver, "(//span[normalize-space()='Direct Imports(Payment Against Bill of entry)'])[1]")
+#Port Loading
+    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[7]"), "PORT OF FINAL DESTINATIONAIR")
+#AD code
+    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[8]"), "MEIS")
+#FREIGHT Value
+    safe_send_keys(driver, (By.XPATH, "(//input[@class='form-control ng-valid ng-dirty ng-touched'])[1]"),  "Opt5646577")
+#MISCELLANEOUS
+    safe_send_keys(driver, (By.XPATH, "(//input[@type='text'])[9]"), "120000")
+#
 
-    safe_click(driver, "(//button[@id='BILL_OF_ENTRY'])[1]")
-    time.sleep(1)
-
-def test_pass(driver):
-    add_boe(driver)
-    add_new_boe(driver)
-    fill_boe_form(driver)
